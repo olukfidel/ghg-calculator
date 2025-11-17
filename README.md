@@ -1,6 +1,16 @@
 # 🌳 GHG Protocol Emissions Calculator
 
-## 1. Overview
+<img width="951" height="413" alt="ghg=register" src="https://github.com/user-attachments/assets/8005bea0-cf11-4f06-94b0-f6b1e81899ae" />
+
+<img width="948" height="410" alt="ghg-activity" src="https://github.com/user-attachments/assets/402a82c7-505d-41fd-a7d8-7fd2e219b5dc" />
+
+<img width="929" height="422" alt="ghg-Dashboard" src="https://github.com/user-attachments/assets/88a331b7-60d6-481a-92ef-218fb979e80d" />
+
+<img width="943" height="421" alt="GHG-REPORTS" src="https://github.com/user-attachments/assets/92be0ab6-f566-47a7-8228-fc19a51c3175" />
+
+<img width="1194" height="757" alt="Screenshot 2025-11-17 150251" src="https://github.com/user-attachments/assets/377d6e5a-e09c-4b5e-8c15-6a3806e7875b" />
+
+## 1. Overview!
 
 This project is an enterprise-grade, full-stack web application designed for sustainability managers to calculate greenhouse gas (GHG) emissions. It strictly adheres to the **GHG Protocol** standards, enabling the tracking, calculation, and reporting of emissions across **Scope 1**, **Scope 2**, and **Scope 3**.
 
