@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Backend Flask Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ghg_backend
+    ports:
+      - "5000:5000" # Expose Gunicorn port
+    env_file:
+      - ./backend/.env # Load env variables from .env file
+    depends_on:
+      db:
+        condition: service_healthy # Wait for DB to be ready
+    volumes:
+      - ./backend:/app # Mount code for development (optional)
+    restart: unless-stopped
+
+  # Frontend React/Nginx Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ghg_frontend
+    ports:
+      - "3000:80" # Map host 3000 to Nginx 80
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # PostgreSQL Database Service
+  db:
+    image: postgres:15-alpine
+    container_name: ghg_db
+    environment:
+      POSTGRES_USER: ghg_user
+      POSTGRES_PASSWORD: ghg_password
+      POSTGRES_DB: ghg_db
+    ports:
+      - "5432:5432" # Expose for local debugging
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ghg_user -d ghg_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Adminer (Database Management)
+  adminer:
+    image: adminer
+    container_name: ghg_adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  postgres_data: # Define the persistent volume
